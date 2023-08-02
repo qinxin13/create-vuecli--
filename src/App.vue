@@ -8,7 +8,7 @@
       <el-button type="warning">警告按钮</el-button>
       <el-button type="danger">危险按钮</el-button>
     </el-row> -->
-  <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -24,12 +24,8 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: left;
-  color: #2c3e50;
-  margin-top: 60px;
+html,body,h3{
+  margin: 0;
+  padding: 0;
 }
 </style>

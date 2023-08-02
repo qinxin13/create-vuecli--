@@ -7,6 +7,8 @@ import ElementUI from 'element-ui'
 // 按需引入
 // import {Row,Button,Container,Aside} from 'element-ui'
 
+import store  from './store'
+
 Vue.config.productionTip = false
 //全局注入element-ui
 Vue.use(ElementUI)
@@ -18,5 +20,6 @@ Vue.use(ElementUI)
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

@@ -1,12 +1,14 @@
 <template>
     <div>
         <el-container>
-            <el-aside width="200px">
-                <component-abside/>
+            <el-aside width="auto">
+                <component-abside />
                 <!-- 小驼峰写法 -->
             </el-aside>
             <el-container>
-                <el-header>Header</el-header>
+                <el-header>
+                    <common-header />
+                </el-header>
                 <el-main>
                     <h1>我是Main</h1>
                     <!-- 路由出口 -->
@@ -18,10 +20,12 @@
 </template>
 <script>
 import ComponentAbside from "../components/ComponentAbside.vue"
+import CommonHeader from "@/components/CommonHeader.vue";
 export default {
     name: 'Main',
-    components:{
+    components: {
         ComponentAbside,
+        CommonHeader
     },
     data() {
         return {
@@ -30,4 +34,8 @@ export default {
     }
 }
 </script>
-<style></style>
+<style scoped>
+.el-header {
+    padding: 0;
+}
+</style>
