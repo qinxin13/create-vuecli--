@@ -111,9 +111,9 @@ export default {
 </script>
 <style lang="less" scoped>
 .el-menu {
-    height: 100vh;
+    height: 100%;
     border-right: none;
-    background: url('../pic/ev02_015a04_mugai_close.png');
+    background: url('../pic/ev02_015a04_mugai_close.png') repeat-y;
     font-weight: 600;
     h3 {
         color: #000000;

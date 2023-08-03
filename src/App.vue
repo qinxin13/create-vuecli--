@@ -24,7 +24,8 @@ export default {
 </script>
 
 <style>
-html,body,h3{
+/* 去掉默认样式 */
+html,body,h3,p{
   margin: 0;
   padding: 0;
 }

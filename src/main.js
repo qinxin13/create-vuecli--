@@ -8,7 +8,7 @@ import ElementUI from 'element-ui'
 // import {Row,Button,Container,Aside} from 'element-ui'
 
 import store  from './store'
-
+import './api/mock'
 Vue.config.productionTip = false
 //全局注入element-ui
 Vue.use(ElementUI)
