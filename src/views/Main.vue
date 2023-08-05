@@ -9,6 +9,7 @@
                 <el-header>
                     <common-header />
                 </el-header>
+                <common-tag />
                 <el-main>
                     <h1>我是Main</h1>
                     <!-- 路由出口 -->
@@ -21,11 +22,13 @@
 <script>
 import ComponentAbside from "../components/ComponentAbside.vue"
 import CommonHeader from "@/components/CommonHeader.vue";
+import CommonTag from "@/components/CommonTag.vue";
 export default {
     name: 'Main',
     components: {
         ComponentAbside,
-        CommonHeader
+        CommonHeader,
+        CommonTag
     },
     data() {
         return {

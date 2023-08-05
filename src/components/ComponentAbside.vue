@@ -89,7 +89,8 @@ export default {
             if (this.$route.path !== item.path && !(this.$route.path === '/home' && (item.path === '/'))) {
                 this.$router.push(item.path)
             }
-
+            //通过this.$store.commit()调用store中的mutation的方法数据
+            this.$store.commit('selectMenu',item)
         },
         // this.isCollapse();
     },
@@ -115,6 +116,7 @@ export default {
     border-right: none;
     background: url('../pic/ev02_015a04_mugai_close.png') repeat-y;
     font-weight: 600;
+
     h3 {
         color: #000000;
         height: 48px;

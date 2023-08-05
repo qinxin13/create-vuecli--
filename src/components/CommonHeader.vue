@@ -3,7 +3,9 @@
         <div class="l-content">
             <el-button @click="handleMenu" icon="el-icon-menu" size="mini"></el-button>
             <!-- 面包屑 -->
-            <div class="text">首页</div>
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item v-for="item of tags" :key="item.path" :to="{ path: item.path }">{{item.label}}</el-breadcrumb-item>
+            </el-breadcrumb>
         </div>
         <div class="r-content">
             <el-dropdown>
@@ -22,7 +24,7 @@
     </div>
 </template>
 <script>
-
+import { mapState } from 'vuex';
 export default {
     name: 'Home',
     data() {
@@ -30,18 +32,23 @@ export default {
 
         }
     },
-    methods:{
-        handleMenu(){
+    methods: {
+        handleMenu() {
             this.$store.commit('collapseMenu')
         }
-    }
+    },
+    computed:{
+        ...mapState({
+            tags:state=>state.tab.tabsList
+        })
+    },
 }
 </script>
 <style lang="less" scoped>
 .header-container {
     padding: 0 20px;
     // background-image: linear-gradient(to right,#ff0000, #f9be1c);
-    background: url('../pic/f08b512d3316dcf55af3464e7958e1426e92cbb1.jpg@942w_531h_progressive.webp')no-repeat ;
+    background: url('../pic/f08b512d3316dcf55af3464e7958e1426e92cbb1.jpg@942w_531h_progressive.webp')no-repeat;
     background-size: 2000px 2000px;
     height: 60px;
     display: flex;
@@ -49,15 +56,22 @@ export default {
     justify-content: space-between;
     align-items: center;
     // align-content: center;
+    position: sticky;
+    z-index: 100;
+
     .l-content {
         display: flex;
         flex-direction: row;
         align-items: center;
+
         .text {
             color: #000000;
             font-size: 14px;
             margin-left: 10px;
             font-weight: 600;
+        }
+        .el-breadcrumb{
+            margin-left: 10px;
         }
     }
 
