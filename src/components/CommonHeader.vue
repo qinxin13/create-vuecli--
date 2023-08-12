@@ -4,17 +4,18 @@
             <el-button @click="handleMenu" icon="el-icon-menu" size="mini"></el-button>
             <!-- 面包屑 -->
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item v-for="item of tags" :key="item.path" :to="{ path: item.path }">{{item.label}}</el-breadcrumb-item>
+                <el-breadcrumb-item v-for="item of tags" :key="item.path"
+                    :to="{ path: item.path }">{{ item.label }}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="r-content">
-            <el-dropdown>
+            <el-dropdown @command="handleClick">
                 <span class="el-dropdown-link">
                     <img class="img" src="../pic/head.png" alt="下拉">
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>个人中心</el-dropdown-item>
-                    <el-dropdown-item>退出</el-dropdown-item>
+                    <el-dropdown-item class="logout" command="cancel">退出</el-dropdown-item>
                     <!-- <el-dropdown-item>螺蛳粉</el-dropdown-item>
                     <el-dropdown-item disabled>双皮奶</el-dropdown-item>
                     <el-dropdown-item divided>蚵仔煎</el-dropdown-item> -->
@@ -25,6 +26,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
+import Cookie from 'js-cookie'
 export default {
     name: 'Home',
     data() {
@@ -35,11 +37,22 @@ export default {
     methods: {
         handleMenu() {
             this.$store.commit('collapseMenu')
+        },
+        handleClick(command) {
+            if (command === 'cancel') {
+                //清除token信息，实现登出
+                Cookie.remove('token')
+                //清除Cookie中的menu
+                Cookie.remove('menu')
+                //跳转到登陆页面
+                this.$router.push('/login')
+            }
+
         }
     },
-    computed:{
+    computed: {
         ...mapState({
-            tags:state=>state.tab.tabsList
+            tags: state => state.tab.tabsList
         })
     },
 }
@@ -70,7 +83,8 @@ export default {
             margin-left: 10px;
             font-weight: 600;
         }
-        .el-breadcrumb{
+
+        .el-breadcrumb {
             margin-left: 10px;
         }
     }
@@ -84,6 +98,9 @@ export default {
             width: 40px;
             height: 40px;
             border-radius: 50%;
+        }
+        .logout{
+            cursor: pointer;
         }
     }
 }

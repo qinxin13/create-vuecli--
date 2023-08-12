@@ -26,55 +26,10 @@
 </style>
 
 <script>
+import Cookie from 'js-cookie'
 export default {
     data() {
-        return {
-
-            menuData: [
-                {
-                    path: '/',
-                    name: 'home',
-                    label: '首页',
-                    icon: 's-home',
-                    url: 'Home/Home'
-                },
-                {
-                    path: '/mail',
-                    name: 'mail',
-                    label: '商品管理',
-                    icon: 'video-play',
-                    url: 'MailManage/MailManage'
-                },
-                {
-                    path: '/user',
-                    name: 'user',
-                    label: '用户管理',
-                    icon: 's-home',
-                    url: 'UserManage/UserManage'
-                },
-                {
-                    label: '其他',
-                    icon: 'location',
-                    children: [
-                        {
-                            path: '/page1',
-                            name: 'page1',
-                            label: '页面1',
-                            icon: 'setting',
-                            url: 'Other/PageOne'
-                        },
-                        {
-                            path: '/page2',
-                            name: 'page2',
-                            label: '页面2',
-                            icon: 'setting',
-                            url: 'Other/PageTwo'
-                        },
-                    ]
-                },
-
-            ]
-        };
+        return {};
     },
     methods: {
         handleOpen(key, keyPath) {
@@ -90,7 +45,7 @@ export default {
                 this.$router.push(item.path)
             }
             //通过this.$store.commit()调用store中的mutation的方法数据
-            this.$store.commit('selectMenu',item)
+            this.$store.commit('selectMenu', item)
         },
         // this.isCollapse();
     },
@@ -102,6 +57,11 @@ export default {
         //有子菜单
         hasChildren() {
             return this.menuData.filter(item => item.children)
+        },
+        menuData() {
+            //判断当前数据，如果缓存中没有，则从store中获取
+            //获取store
+            return JSON.parse(Cookie.get('menu')) || this.$store.state.tab.menu
         },
         //定义一个方法，折叠
         isCollapse() {
